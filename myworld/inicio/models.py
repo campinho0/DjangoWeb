@@ -6,3 +6,7 @@ class usuarios(models.Model):
     segundo_nombre = models.CharField(max_length=255)
     apellidos = models.CharField(max_length=255)
     edad = models.IntegerField()
+
+class Registros(models.Model):
+    username = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)

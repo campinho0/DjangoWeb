@@ -6,18 +6,25 @@ from django.urls import reverse
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .models import usuarios
+from .models import usuarios , Registros
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib import messages
 
 
 def index(request):
-    usuarios_ = usuarios.objects.all().values()
     template = loader.get_template('inicio.html')
-    context = {
-        'usuarios': usuarios_,
-    }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render())
+
+def login(request):
+  template = loader.get_template('login.html')
+  return HttpResponse(template.render())
+
+def logincheck(request):
+  perfiles = Registros.objects.all().values()
+  username = request.POST['username']
+  password = request.POST['password']
+  template = loader.get_template('register.html')
+  return HttpResponse(template.render())
 
 def register(request):
     usuarios_ = usuarios.objects.all().values()
@@ -41,4 +48,9 @@ def addUsuario(request):
     apellidos = apellido,
     edad = edad_)
   usuario.save()
+  return HttpResponseRedirect(reverse('register'))
+
+def deleteUsuario(request, id):
+  usuarios_ = usuarios.objects.get(id=id)
+  usuarios_.delete()
   return HttpResponseRedirect(reverse('register'))

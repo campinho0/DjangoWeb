@@ -12,7 +12,7 @@
           <div class="collapse navbar-collapse" id="navbarExample01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item active">
-                <a class="nav-link" aria-current="page" href="/">Webbapp</a>
+                <a class="nav-link" aria-current="page" href="/"><strong> Webbapp</strong></a>
               </li>
             </ul>
           </div>
@@ -23,11 +23,12 @@
     <table class="table">
     {% for x in usuarios %}
     <tr>
-    <td>{{ x.id }}</td>
-    <td>{{ x.primer_nombre }}</td>
-    <td>{{ x.segundo_nombre }}</td>
-    <td>{{ x.apellidos}}</td>
-        <td>{{ x.edad}}</td>
+      <td>{{ x.id }}</td>
+      <td>{{ x.primer_nombre }}</td>
+      <td>{{ x.segundo_nombre }}</td>
+      <td>{{ x.apellidos}}</td>
+      <td>{{ x.edad}}</td>
+      <td><a href="delete/{{ x.id }}">borrar</a></td>
     </tr>
     {% endfor %}
     </table>
